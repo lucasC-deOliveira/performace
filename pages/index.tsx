@@ -2,6 +2,8 @@ import type { NextPage } from 'next'
 import { FormEvent, useCallback, useMemo, useState } from 'react'
 import { SearchResults } from '../src/components/SearchResults'
 
+
+
 type Results = {
   totalPrice: number;
   data: any[];
