@@ -7,9 +7,10 @@ type searchResultsProps = {
     title: string;
     price: number;
   }>
+  onAddToWishList: (id: number) => void
 }
 
-export function SearchResults({ results }: searchResultsProps) {
+export function SearchResults({ results, onAddToWishList }: searchResultsProps) {
 
   //use memo memoriza um calculo
 
@@ -34,7 +35,7 @@ export function SearchResults({ results }: searchResultsProps) {
     <div>
       {results.map(product => {
         return (
-          <ProductItem product={product} />
+          <ProductItem key={product.id} product={product} onAddToWishList={onAddToWishList}/>
         )
       })}
     </div>
