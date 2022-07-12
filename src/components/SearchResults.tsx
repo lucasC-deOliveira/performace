@@ -7,18 +7,15 @@ type searchResultsProps = {
     title: string;
     price: number;
   }>
-  onAddToWishList: (id: number) => void
+  totalPrice: number;
+  onAddToWishList: (id: number) => void;
 }
 
-export function SearchResults({ results, onAddToWishList }: searchResultsProps) {
+export function SearchResults({ results, totalPrice, onAddToWishList }: searchResultsProps) {
 
   //use memo memoriza um calculo
 
-  const totalPrice = useMemo(() => {
-    return results.reduce((total, product) => {
-      return total + product.price
-    }, 0)
-  }, [results]) // ultimo parametro é um array de dependencias
+  // ultimo parametro é um array de dependencias
 
   //exemplo quero que o calculo seja refeito sempre que results mudar
 
@@ -33,9 +30,10 @@ export function SearchResults({ results, onAddToWishList }: searchResultsProps) 
 
   return (
     <div>
+      <h2>{totalPrice}</h2>
       {results.map(product => {
         return (
-          <ProductItem key={product.id} product={product} onAddToWishList={onAddToWishList}/>
+          <ProductItem key={product.id} product={product} onAddToWishList={onAddToWishList} />
         )
       })}
     </div>
